@@ -24,8 +24,8 @@ mongoose
   });
 
 // Read JSON file
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));
 const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, 'utf-8'));
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));
 const reviews = JSON.parse(
   fs.readFileSync(`${__dirname}/reviews.json`, 'utf-8')
 );
@@ -33,8 +33,8 @@ const reviews = JSON.parse(
 // Import data into database
 const importData = async () => {
   try {
-    await Tour.create(tours);
     await User.create(users, { validateBeforeSave: false });
+    await Tour.create(tours);
     await Review.create(reviews);
     // eslint-disable-next-line no-console
     console.log('Data successfully loaded!');
@@ -48,8 +48,8 @@ const importData = async () => {
 // Delete all data from collection
 const deleteData = async () => {
   try {
-    await Tour.deleteMany();
     await User.deleteMany();
+    await Tour.deleteMany();
     await Review.deleteMany();
     // eslint-disable-next-line no-console
     console.log('Data successfully deleted!');
