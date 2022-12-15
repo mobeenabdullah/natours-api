@@ -1,7 +1,9 @@
 const express = require('express');
-
+const multer = require('multer');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
+
+const upload = multer({ dest: 'public/img/users' });
 
 const {
   getAllUsers,
@@ -39,7 +41,7 @@ router.use(protect);
 
 router.patch('/updateMyPassword', updatePassword);
 router.get('/me', getMe, getUser);
-router.patch('/updateMe', updateMe);
+router.patch('/updateMe', upload.single('photo'), updateMe);
 router.delete('/deleteMe', deleteMe);
 
 // Restrict all routes after this middleware to admin only
